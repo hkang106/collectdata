@@ -6,8 +6,15 @@ class Validation extends Component {
     this.state = {
       username: ""
     };
+    //this.handleChange = this.handleChange.bind(this);
+  }
 
-    this.handleChange = this.handleChange.bind(this);
+  componentWillMount() {
+    localStorage.setItem("placeholder", "1@test@test23");
+
+    if (this.state.username === "") {
+      this.setState({ username: localStorage.getItem("placeholder") });
+    }
   }
 
   handleChange = e => {
@@ -16,8 +23,8 @@ class Validation extends Component {
     });
   };
   handleClick = () => {
-    const result = this.props.action.fetchValidUser(this.state.username);
-    console.log(result);
+    this.props.action.fetchValidUser(this.state.username);
+    console.log("this.state.username: ", this.state.username);
   };
 
   render() {
@@ -28,7 +35,7 @@ class Validation extends Component {
           type="text"
           onChange={this.handleChange}
           value={this.state.username}
-          placeholder="1@test@test23"
+          placeholder={localStorage.getItem("placeholder")}
         />
         <button
           onClick={() => {

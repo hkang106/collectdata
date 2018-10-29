@@ -5,6 +5,7 @@ import createHistory from "history/createBrowserHistory";
 import thunk from "redux-thunk";
 import { i18nState } from "redux-i18n";
 import user from "redux/modules/user";
+import survey from "redux/modules/survey";
 
 const env = process.env.NODE_ENV;
 
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   routing: routerReducer,
   i18nState,
   user
+  //survey
 });
 
 let store;

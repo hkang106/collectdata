@@ -3,11 +3,9 @@ import { handleActions, createAction } from "redux-actions";
 
 export const CHECK_USER = "CHECK_USER";
 export const ADD_USER = "ADD_USER";
-export const GET_STATUS = "GET_STATUS";
 
 export const checkUser = createAction(CHECK_USER);
 export const addUser = createAction(ADD_USER);
-export const getStatus = createAction(GET_STATUS);
 
 // API actions
 
@@ -44,6 +42,7 @@ function fetchValidUser(username) {
 const initialState = List([
   Map({
     id: 0,
+    username: "",
     status: "",
     survey: "",
     text: ""
@@ -70,6 +69,7 @@ export default handleActions(
       const {
         payload: { text }
       } = action;
+
       /* 
       const {
         payload: { text }
@@ -77,6 +77,8 @@ export default handleActions(
       */
       alert(text);
       const index = state.findIndex(item => item.get("id") === id);
+      state.updateIn([index, "text"], val => text);
+
       return state.updateIn([index, "status"], val => status);
     }
   },
