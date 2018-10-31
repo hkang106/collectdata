@@ -1,33 +1,18 @@
-import React, { Component } from "react";
-import Select from "react-select";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import Container from "./container";
+import { actionCreators as surveyActions } from "redux/modules/survey";
 
-const options = [
-  { value: true, label: "True" },
-  { value: false, label: "False" }
-];
+export default connect(
+  (state, ownProps) => ({
+    survey: state.survey,
+    idx: ownProps.idx
+  }),
+  dispatch => ({
+    SurveyActions: bindActionCreators(surveyActions, dispatch)
+  })
+)(Container);
+/*
 
-class SurveyDropDownItem extends Component {
-  state = {
-    selectedOption: null
-  };
 
-  handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
-  };
-
-  render() {
-    const { selectedOption } = this.state;
-    return (
-      <div>
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
-      </div>
-    );
-  }
-}
-
-export default SurveyDropDownItem;
+*/

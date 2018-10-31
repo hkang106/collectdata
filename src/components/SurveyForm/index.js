@@ -5,7 +5,7 @@ import { actionCreators as surveyActions } from "redux/modules/survey";
 
 export default connect(
   state => ({
-    user: state.survey
+    survey: state.survey
   }),
   dispatch => ({
     UserActions: bindActionCreators(surveyActions, dispatch)

@@ -21,8 +21,8 @@ if (env === "development") {
 const reducer = combineReducers({
   routing: routerReducer,
   i18nState,
-  user
-  //survey
+  user,
+  survey
 });
 
 let store;
