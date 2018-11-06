@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Validation from "components/Validation";
 import SurveyForm from "components/SurveyForm";
 import LearnersChat from "components/LearnersChat";
+import Buttons from "components/Buttons";
+import ChatButton from "components/ChatButton";
 
 export default class App extends Component {
   render() {
@@ -9,7 +11,9 @@ export default class App extends Component {
       <div>
         <Validation />
         <SurveyForm />
+        <Buttons />
         <LearnersChat />
+        <ChatButton />
       </div>
     );
   }
