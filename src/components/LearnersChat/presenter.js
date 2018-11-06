@@ -1,17 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CenteredGrid from "./presenter";
-class LC extends React.Component {
+import CenteredGrid from "./grid";
+class LearnersChat extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
   render() {
-    return <CenteredGrid />;
+    return (
+      <div>
+        <h1> Learner&#39;s Chat</h1>
+        <CenteredGrid />
+      </div>
+    );
   }
 }
 
-LC.propTypes = {};
+LearnersChat.propTypes = {};
 
-export default LC;
+export default LearnersChat;

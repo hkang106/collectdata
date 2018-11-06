@@ -22,7 +22,9 @@ function CenteredGrid(props) {
     <div className={classes.root}>
       <Grid container spacing={24}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>xs=12</Paper>
+          <Paper className={classes.paper}>
+            <h2> This is Learner&#39;s chat section. </h2>
+          </Paper>
         </Grid>
       </Grid>
     </div>
