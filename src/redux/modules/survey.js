@@ -1,12 +1,15 @@
 import { Map, List } from "immutable";
 import { handleActions, createAction } from "redux-actions";
 
+//actions
 export const SELECT_OPTION = "SELECT_OPTION";
 export const CLICK_SUBMIT = "CLICK_SUBMIT";
+export const GET_CLICKED_ITEM = "GET_CLICKED_ITEM";
 
+//action creators
 export const clickSubmit = createAction(CLICK_SUBMIT);
 export const selectOption = createAction(SELECT_OPTION);
-
+export const getClickedItem = createAction(GET_CLICKED_ITEM);
 const initialState = List([
   Map({
     idx: 0,
@@ -69,12 +72,27 @@ const initialState = List([
     status: null
   })
 ]);
+function getClicked(index) {
+  return (dispatch, getState) => {
+    const { survey } = getState();
+    console.log("state in getClicked: ", survey);
+    const item = survey.get(index);
+    console.log("item:!!!!!", item);
+    dispatch(getClickedItem(item));
+  };
+}
 
 export default handleActions(
   {
     [CLICK_SUBMIT]: (state, action) => {
       //const index = state.findIndex(item => item.get("id") === id);
     },
+    [GET_CLICKED_ITEM]: (state, action) => {
+      const { payload } = action;
+      console.log("payload::------------", payload);
+      return;
+    },
+
     [SELECT_OPTION]: (state, action) => {
       // action's arg1: true, falue
       // action's arg2: question idx
@@ -87,18 +105,18 @@ export default handleActions(
           selectedOption: { value }
         }
       } = action;
-      const index = state.findIndex(item => item.get("idx") === idx);
-      console.log("index: ", index);
+      //const index = state.findIndex(item => item.get("idx") === idx);
       console.log("idx: ", idx);
-      console.log("value: ", value);
-      return state.updateIn([index, "status"], val => value);
+      //console.log("index: ", index);
+      return state.updateIn([idx, "status"], val => value);
     }
   },
   initialState
 );
 
 const actionCreators = {
-  selectOption
+  selectOption,
+  getClicked
 };
 
 export { actionCreators };
