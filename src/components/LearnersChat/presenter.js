@@ -1,6 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
-import CenteredGrid from "./grid";
+
+import MessageList from "components/MessageList";
+import SendMessageForm from "components/SendMessageForm";
+//import "style.css";
+
 class LearnersChat extends React.Component {
   constructor(props) {
     super(props);
@@ -11,12 +14,16 @@ class LearnersChat extends React.Component {
     return (
       <div>
         <h1> Learner&#39;s Chat</h1>
-        <CenteredGrid />
+        <MessageList />
+        <SendMessageForm />
       </div>
     );
   }
 }
-
+/**
+ *
+         
+ */
 LearnersChat.propTypes = {};
 
 export default LearnersChat;

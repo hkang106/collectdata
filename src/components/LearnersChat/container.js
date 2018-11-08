@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import LC from "./presenter";
+import LearnersChat from "./presenter";
 class container extends Component {
   render() {
-    return <LC />;
+    const { chatActions } = this.props;
+
+    return <LearnersChat sendMessage={chatActions.sendMessage} />;
   }
 }
 

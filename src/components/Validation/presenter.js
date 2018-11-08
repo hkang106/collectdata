@@ -1,4 +1,22 @@
 import React, { Component } from "react";
+import Test from "./test";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit
+  },
+  iconSmall: {
+    fontSize: 20
+  }
+});
 
 class Validation extends Component {
   constructor(props) {
@@ -28,6 +46,8 @@ class Validation extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
         <input
@@ -37,16 +57,22 @@ class Validation extends Component {
           value={this.state.username}
           placeholder={localStorage.getItem("placeholder")}
         />
-        <button
+
+        <Button
           onClick={() => {
             this.handleClick();
           }}
+          variant="contained"
+          color="secondary"
+          className={classes.button}
         >
-          Validate User
-        </button>
+          CHECK USER
+        </Button>
+
+        <Test />
       </div>
     );
   }
 }
 
-export default Validation;
+export default withStyles(styles)(Validation);
