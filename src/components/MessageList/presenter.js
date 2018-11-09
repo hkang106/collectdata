@@ -16,8 +16,9 @@ class MessageList extends React.Component {
     }
   }
   render() {
+    console.log("this.props:", this.props);
     const {
-      messages: { messages }
+      data: { messages }
     } = this.props;
 
     console.log("messages:", messages);

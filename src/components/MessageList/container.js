@@ -7,7 +7,7 @@ class Container extends React.Component {
     const { chat, chatActions } = this.props;
     return (
       <div>
-        <MessageList messages={chat} />
+        <MessageList data={chat} />
       </div>
     );
   }

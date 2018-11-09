@@ -16,7 +16,6 @@ class Container extends React.Component {
     return (
       <div>
         <SendMessageForm
-          sendMessage={chatActions.sendMessage}
           handleChange={this._handleChange}
           handleSubmit={this._handleSubmit}
           message={this.state.message}
@@ -33,7 +32,7 @@ class Container extends React.Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.chatActions.sendMessage(this.state.message);
+    this.props.chatActions.fetchBotMessage(null, this.state.message);
     this.setState({
       message: ""
     });
