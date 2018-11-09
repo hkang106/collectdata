@@ -6,37 +6,36 @@
 
 ```json
 {
-  (...),
-
   "bot_response": {
-    author,
-    <h3>comment_id</h3>,
-    body,
-    edits,
-    parent,
-    created,
-    is_dangling,
-    is_frozen,
-    flaggers_typo,
-    flaggers_context,
-    tree,
-    depth,
-    character
+    "author": "",
+    "comment_id": "",
+    "body": "",
+    "edits": [],
+    "parent": [],
+    "created": "",
+    "is_dangling": false,
+    "is_frozen": false,
+    "flaggers_typo": [],
+    "flaggers_context": [],
+    "tree": {},
+    "depth": 0,
+    "character": {}
   },
   "next_options": [
     {
-      author,
-      comment_id,
-      body,
-      edits,
-      parent,
-      created,
-      is_dangling,
-      is_frozen,
-      flaggers_typo,
-      flaggers_context,
-      depth,
-      character
+      "author": "",
+      "comment_id": "",
+      "body": "",
+      "edits": [],
+      "parent": [],
+      "created": "",
+      "is_dangling": false,
+      "is_frozen": false,
+      "flaggers_typo": [],
+      "flaggers_context": [],
+      "tree": {},
+      "depth": 1,
+      "character": {}
     }
   ]
 }
