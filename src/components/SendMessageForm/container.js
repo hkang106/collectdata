@@ -32,7 +32,19 @@ class Container extends React.Component {
 
   _handleSubmit(e) {
     e.preventDefault();
-    this.props.chatActions.fetchBotMessage(null, this.state.message);
+    const {
+      chat: { bot_responses, bot_cids }
+    } = this.props;
+    console.log("bot_responses::: ", bot_responses);
+    let bot_cid = null;
+
+    if (bot_responses.length === 0) {
+      bot_cid = null;
+    } else {
+      let last_index = bot_responses.length - 1;
+      bot_cid = bot_cids[last_index];
+    }
+    this.props.chatActions.fetchBotMessage(bot_cid, this.state.message);
     this.setState({
       message: ""
     });

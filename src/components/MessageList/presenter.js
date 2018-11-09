@@ -16,13 +16,13 @@ class MessageList extends React.Component {
     }
   }
   render() {
-    console.log("this.props:", this.props);
+    //console.log("this.props:", this.props);
     const {
-      data: { messages }
+      data: { messages, bot_responses }
     } = this.props;
 
-    console.log("messages:", messages);
-    console.log("messages.length: ", messages.length);
+    //console.log("messages:", messages);
+    //console.log("messages.length: ", messages.length);
     if (messages.length === 0) {
       return (
         <div className="message-list">
@@ -33,7 +33,12 @@ class MessageList extends React.Component {
     return (
       <div className="message-list">
         {messages.map((message, index) => {
-          return <Message text={message} />;
+          return (
+            <div>
+              <Message text={message} />
+              <Message text={bot_responses[index]} />
+            </div>
+          );
         })}
       </div>
     );
