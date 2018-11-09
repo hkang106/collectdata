@@ -10,13 +10,18 @@ const initialState = {
   messages: []
 };
 
+// API action functions
+function fetchBotMessage() {
+  return (dispatch, getState) => {
+    fetch("");
+  };
+}
+
 export default handleActions(
   {
     [SEND_MESSAGE]: (state, action) => {
       const { payload } = action;
-      console.log("action: ", action);
-      console.log("previous message:", state.messages);
-      console.log("new message:", payload);
+
       return { messages: [...state.messages, payload] };
     }
   },
