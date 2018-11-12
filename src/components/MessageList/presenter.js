@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "components/Message";
 import ReactDOM from "react-dom";
-
+import "./chatbubble.css";
 class MessageList extends React.Component {
   componentWillUpdate() {
     const node = ReactDOM.findDOMNode(this);
@@ -18,11 +18,20 @@ class MessageList extends React.Component {
   render() {
     //console.log("this.props:", this.props);
     const {
-      data: { messages, bot_responses }
+      data: {
+        messages,
+        bot_responses,
+        is_user_message,
+        is_bot_message,
+        is_option_selected
+      }
     } = this.props;
 
     //console.log("messages:", messages);
     //console.log("messages.length: ", messages.length);
+
+    console.log("is_user_message: ", is_user_message);
+    console.log("is_bot_message: ", is_bot_message);
     if (messages.length === 0) {
       return (
         <div className="message-list">
@@ -34,9 +43,18 @@ class MessageList extends React.Component {
       <div className="message-list">
         {messages.map((message, index) => {
           return (
-            <div>
-              <Message text={message} />
-              <Message text={bot_responses[index]} />
+            <div className="msg-container">
+              <Message
+                className="message-user"
+                text={message}
+                is_user={is_user_message}
+              />
+
+              <Message
+                className="message-bot"
+                text={bot_responses[index]}
+                is_bot={is_bot_message}
+              />
             </div>
           );
         })}

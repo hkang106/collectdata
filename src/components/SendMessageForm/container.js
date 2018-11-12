@@ -35,7 +35,6 @@ class Container extends React.Component {
     const {
       chat: { bot_responses, bot_cids }
     } = this.props;
-    console.log("bot_responses::: ", bot_responses);
     let bot_cid = null;
 
     if (bot_responses.length === 0) {
@@ -44,6 +43,10 @@ class Container extends React.Component {
       let last_index = bot_responses.length - 1;
       bot_cid = bot_cids[last_index];
     }
+
+    console.log("--bot_cid: ", bot_cid);
+    console.log("--this.state.message: ", this.state.message);
+
     this.props.chatActions.fetchBotMessage(bot_cid, this.state.message);
     this.setState({
       message: ""

@@ -1,16 +1,23 @@
 import React from "react";
+import OutlinedButtons from "./buttons";
 
 class NextOptions extends React.Component {
   render() {
-    const { nextOpt } = this.props;
+    const {
+      nextOpt,
+      getFetBotProps,
+      fetchBotMessage,
+      clickOption
+    } = this.props;
     return (
       <div>
         {nextOpt && (
-          <ul>
-            {nextOpt.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))}
-          </ul>
+          <OutlinedButtons
+            nextOpt={nextOpt}
+            getFetBotProps={getFetBotProps}
+            fetchBotMessage={fetchBotMessage}
+            clickOption={clickOption}
+          />
         )}
       </div>
     );

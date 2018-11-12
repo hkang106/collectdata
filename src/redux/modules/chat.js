@@ -4,11 +4,14 @@ import { handleActions, createAction } from "redux-actions";
 export const SEND_MESSAGE = "SEND_MESSAGE";
 export const SET_BOT_RESPONSE = "SET_BOT_RESPONSE";
 export const SET_OPTION = "SET_OPTION";
-
+export const CLICK_OPTION = "CLICK_OPTION";
+export const INITIATE_CHAT = "INITIATE_CHAT";
 //action creators
 export const sendMessage = createAction(SEND_MESSAGE);
 export const setBotResponse = createAction(SET_BOT_RESPONSE);
 export const setOption = createAction(SET_OPTION);
+export const clickOption = createAction(CLICK_OPTION);
+export const initiateChat = createAction(INITIATE_CHAT);
 
 //state
 const initialState = {
@@ -34,20 +37,27 @@ function fetchBotMessage(cid, user_utt) {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          prev_bot_cid: null,
-          user_utt: "hello"
+          prev_bot_cid: cid,
+          user_utt: user_utt
         })
       }
     )
       .then(response => response.json())
       .then(json => {
-        console.log("json: ", json);
         const {
           bot_response: { body, comment_id },
           next_options
         } = json;
+        const {
+          chat: { is_option_selected, messages, bot_responses }
+        } = getState();
 
-        dispatch(sendMessage(user_utt));
+        if (messages.length === 0) {
+          dispatch(initiateChat());
+        }
+        if (is_option_selected === false) {
+          dispatch(sendMessage(user_utt));
+        }
         dispatch(setBotResponse({ comment_id, body }));
         dispatch(setOption({ next_options }));
 
@@ -61,7 +71,13 @@ export default handleActions(
   {
     [SEND_MESSAGE]: (state, action) => {
       const { payload } = action;
-      return { ...state, messages: [...state.messages, payload] };
+      return {
+        ...state,
+
+        is_bot_message: false,
+        is_user_message: true,
+        messages: [...state.messages, payload]
+      };
     },
     [SET_BOT_RESPONSE]: (state, action) => {
       const {
@@ -70,6 +86,8 @@ export default handleActions(
 
       return {
         ...state,
+        is_bot_message: true,
+        is_user_message: false,
         bot_cids: [...state.bot_cids, comment_id],
         bot_responses: [...state.bot_responses, body]
       };
@@ -89,6 +107,19 @@ export default handleActions(
         options: [...state.options, [...opts]],
         opt_cids: [...state.opt_cids, [...ids]]
       };
+    },
+
+    [CLICK_OPTION]: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        is_option_selected: true,
+        messages: [...state.messages, payload]
+      };
+    },
+
+    [INITIATE_CHAT]: (state, action) => {
+      return { ...state, is_chat_initiated: true };
     }
   },
   initialState
@@ -96,7 +127,8 @@ export default handleActions(
 
 const actionCreators = {
   sendMessage,
-  fetchBotMessage
+  fetchBotMessage,
+  clickOption
 };
 
 export { actionCreators };
