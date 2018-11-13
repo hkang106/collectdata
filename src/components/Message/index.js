@@ -4,6 +4,7 @@ import "./chat.css";
 function Message(props) {
   return (
     <div>
+      {console.log("props.is_bot: ", props.is_bot)}
       {!props.is_bot && (
         <div className="message-user">
           <div className="message-text">{props.text}</div>

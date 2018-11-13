@@ -21,7 +21,6 @@ const initialState = {
   bot_cids: [],
   opt_cids: [],
   is_chat_initiated: false,
-  is_user_message: false,
   is_bot_message: false,
   is_option_selected: false
 };
@@ -84,6 +83,7 @@ export default handleActions(
 
       return {
         ...state,
+        is_bot_message: true,
         bot_cids: [...state.bot_cids, comment_id],
         bot_responses: [...state.bot_responses, body]
       };
