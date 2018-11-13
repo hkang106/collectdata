@@ -32,6 +32,7 @@ class MessageList extends React.Component {
 
     console.log("is_user_message: ", is_user_message);
     console.log("is_bot_message: ", is_bot_message);
+    console.log("is_option_selected: ", is_option_selected);
     if (messages.length === 0) {
       return (
         <div className="message-list">
@@ -44,17 +45,21 @@ class MessageList extends React.Component {
         {messages.map((message, index) => {
           return (
             <div className="msg-container">
-              <Message
-                className="message-user"
-                text={message}
-                is_user={is_user_message}
-              />
+              {is_bot_message && (
+                <Message
+                  className="message-user"
+                  text={message}
+                  is_user={is_user_message}
+                />
+              )}
 
-              <Message
-                className="message-bot"
-                text={bot_responses[index]}
-                is_bot={is_bot_message}
-              />
+              {is_bot_message && (
+                <Message
+                  className="message-bot"
+                  text={bot_responses[index]}
+                  is_bot={is_bot_message}
+                />
+              )}
             </div>
           );
         })}

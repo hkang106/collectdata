@@ -74,8 +74,6 @@ export default handleActions(
       return {
         ...state,
 
-        is_bot_message: false,
-        is_user_message: true,
         messages: [...state.messages, payload]
       };
     },
@@ -86,8 +84,6 @@ export default handleActions(
 
       return {
         ...state,
-        is_bot_message: true,
-        is_user_message: false,
         bot_cids: [...state.bot_cids, comment_id],
         bot_responses: [...state.bot_responses, body]
       };

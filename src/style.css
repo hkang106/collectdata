@@ -1,5 +1,6 @@
 :root {
-    --main-color: #5ea3d0;
+    --main-color: #7e96da;
+    --main-user-color: #d05eca;
     --secondary-color: white;
     --main-text-color: #3e5869;
     --secondary-text-color: #b0c7d6;
@@ -73,10 +74,16 @@ body {
     padding: 4px 8px;
     border-radius: 8px;
 
-
-
 }
 
+.message-user .message-text {
+    background: var(--main-user-color);
+    color: var(--secondary-color);
+    display: inline;
+    padding: 4px 8px;
+    border-radius: 8px;
+
+}
 
 .message-bot .message-text-bot {
     background: var(--main-color);
@@ -84,8 +91,6 @@ body {
     display: inline;
     padding: 4px 8px;
     border-radius: 8px;
-
-
 
 }
 
