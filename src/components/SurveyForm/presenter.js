@@ -8,7 +8,6 @@ class SurveyForm extends Component {
   render() {
     return (
       <div>
-        <h1>치매 진단 데이터셋 제작중</h1>
         <CenteredGrid />
       </div>
     );

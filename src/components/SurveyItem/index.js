@@ -12,7 +12,3 @@ export default connect(
     SurveyActions: bindActionCreators(surveyActions, dispatch)
   })
 )(Container);
-/*
-
-
-*/
