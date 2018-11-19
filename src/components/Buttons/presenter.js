@@ -36,9 +36,6 @@ function Buttons(props) {
       >
         Randomize
       </Button>
-      <Button variant="contained" color="primary" className={classes.button}>
-        Submit
-      </Button>
     </div>
   );
 }

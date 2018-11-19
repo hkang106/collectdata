@@ -9,42 +9,41 @@ export const clickRandomize = createAction(CLICK_RANDOMIZE);
 export const handleSwitch = createAction(HANDLE_SWITCH);
 
 const initialState = {
-  dq1: null,
-  dq2: null,
-  dq3: null,
-  dq4: null,
-  dq5: null,
-  dq6: null,
-  dq7: null,
-  dq8: null,
-  dq9: null,
-  dq10: null,
-  dq11: null,
-  dq12: null,
-  dq13: null,
-  dq14: null,
-  dq15: null,
-  uq1: null,
-  uq2: null,
-  uq3: null,
-  uq4: null,
-  uq5: null,
-  uq6: null,
-  uq7: null,
-  uq8: null,
-  uq9: null,
-  uq10: null,
-  uq11: null,
-  uq12: null,
-  uq13: null,
-  uq14: null,
-  uq15: null
+  dq1: false,
+  dq2: false,
+  dq3: false,
+  dq4: false,
+  dq5: false,
+  dq6: false,
+  dq7: false,
+  dq8: false,
+  dq9: false,
+  dq10: false,
+  dq11: false,
+  dq12: false,
+  dq13: false,
+  dq14: false,
+  dq15: false,
+  uq1: false,
+  uq2: false,
+  uq3: false,
+  uq4: false,
+  uq5: false,
+  uq6: false,
+  uq7: false,
+  uq8: false,
+  uq9: false,
+  uq10: false,
+  uq11: false,
+  uq12: false,
+  uq13: false,
+  uq14: false,
+  uq15: false
 };
 
 export default handleActions(
   {
     [CLICK_RANDOMIZE]: (state, action) => {
-      alert("check");
       return {
         ...state,
         dq1: Math.random() >= 0.5,
@@ -78,6 +77,15 @@ export default handleActions(
         uq14: Math.random() >= 0.5,
         uq15: Math.random() >= 0.5
       };
+    },
+
+    [HANDLE_SWITCH]: (state, action) => {
+      const {
+        payload: { event, question }
+      } = action;
+
+      //return state;
+      return { ...state, [question]: event.target.checked };
     }
   },
   initialState

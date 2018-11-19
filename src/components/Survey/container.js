@@ -1,5 +1,5 @@
 import React from "react";
-import UnitTest from "./presenter";
+import Survey from "./presenter";
 class Container extends React.Component {
   constructor(props) {
     super(props);
@@ -9,7 +9,7 @@ class Container extends React.Component {
   render() {
     const { survey, SurveyActions } = this.props;
     return (
-      <UnitTest
+      <Survey
         clickRandomize={SurveyActions.clickRandomize}
         survey={survey}
         handleSwitch={SurveyActions.handleSwitch}
