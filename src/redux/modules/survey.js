@@ -1,12 +1,14 @@
-import { Map, List } from "immutable";
+//import { Map, List } from "immutable";
 import { handleActions, createAction } from "redux-actions";
-
+import { push } from "react-router-redux";
 //actions
 export const CLICK_RANDOMIZE = "CLICK_RANDOMIZE";
 export const HANDLE_SWITCH = "HANDLE_SWITCH";
+export const CLICK_SUBMIT = "CLICK_SUBMIT";
 //action creators
 export const clickRandomize = createAction(CLICK_RANDOMIZE);
 export const handleSwitch = createAction(HANDLE_SWITCH);
+export const clickSubmit = createAction(CLICK_SUBMIT);
 
 const initialState = {
   dq1: false,
@@ -93,7 +95,8 @@ export default handleActions(
 
 const actionCreators = {
   clickRandomize,
-  handleSwitch
+  handleSwitch,
+  clickSubmit
 };
 
 export { actionCreators };

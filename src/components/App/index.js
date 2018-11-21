@@ -1,16 +1,14 @@
-import { push } from "react-router-redux";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Container from "./container";
 import { actionCreators as surveyActions } from "redux/modules/survey";
 
 export default connect(
-  (state, ownProps) => ({
+  state => ({
     survey: state.survey,
-    routeHistory: ownProps.routeHistory
+    pathname: state.routing.location.pathname
   }),
-  (dispatch, ownProps) => ({
+  dispatch => ({
     surveyActions: bindActionCreators(surveyActions, dispatch)
   })
 )(Container);

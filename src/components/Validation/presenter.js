@@ -68,8 +68,6 @@ class Validation extends Component {
         >
           CHECK USER
         </Button>
-
-        <Test />
       </div>
     );
   }

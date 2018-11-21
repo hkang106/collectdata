@@ -8,6 +8,9 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import KeyboardVoiceICon from "@material-ui/icons/KeyboardVoice";
 import Icon from "@material-ui/core/Icon";
 import SaveIcon from "@material-ui/icons/Save";
+import { Link, withRouter } from "react-router-dom";
+
+import history from "redux/configureStore";
 
 const styles = theme => ({
   button: {
@@ -24,24 +27,26 @@ const styles = theme => ({
   }
 });
 
-function Buttons(props) {
-  const { classes, clickRandomize } = props;
+function ChatButton(props) {
+  const { classes, routeHistory } = props;
   return (
     <div>
       <Button
         variant="contained"
-        color="secondary"
-        onClick={clickRandomize}
+        color="primary"
+        onClick={() => {
+          routeHistory.push("/submit/");
+        }}
         className={classes.button}
       >
-        Randomize
+        Submit
       </Button>
     </div>
   );
 }
 
-Buttons.propTypes = {
+ChatButton.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Buttons);
+export default withStyles(styles)(withRouter(ChatButton));
