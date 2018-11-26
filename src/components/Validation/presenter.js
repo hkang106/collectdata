@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import Test from "./test";
-import Button from "@material-ui/core/Button";
+//import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
+import "semantic-ui-css/semantic.min.css";
+import { Button, Container, Checkbox, Form } from "semantic-ui-react";
 
 const styles = theme => ({
   button: {
@@ -47,30 +48,71 @@ class Validation extends Component {
 
   render() {
     const { classes } = this.props;
-
+    const {
+      usernameValue,
+      emailValue,
+      passwordValue,
+      signupSubmit,
+      inputChange
+    } = this.props;
     return (
       <div>
-        <input
-          name="username"
-          type="text"
-          onChange={this.handleChange}
-          value={this.state.username}
-          placeholder={localStorage.getItem("placeholder")}
-        />
-
-        <Button
-          onClick={() => {
-            this.handleClick();
-          }}
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-        >
-          CHECK USER
-        </Button>
+        <Container text>
+          <Form onSubmit={signupSubmit}>
+            <Form.Field>
+              <label>Username</label>
+              <input
+                name="username"
+                onChange={inputChange}
+                value={usernameValue}
+                placeholder="Username"
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>email</label>
+              <input
+                name="email"
+                onChange={inputChange}
+                value={emailValue}
+                placeholder="Email"
+              />
+            </Form.Field>
+            <Form.Field>
+              <label>password</label>
+              <input
+                name="password"
+                onChange={inputChange}
+                value={passwordValue}
+                placeholder="Password"
+              />
+            </Form.Field>
+            <Button color="orange" type="submit">
+              SIGN UP
+            </Button>
+          </Form>
+        </Container>
       </div>
     );
   }
 }
 
 export default withStyles(styles)(Validation);
+
+/*
+          <input
+            name="username"
+            type="text"
+            onChange={this.handleChange}
+            value={this.state.username}
+            placeholder={localStorage.getItem("placeholder")}
+          />
+
+          <Button
+            onClick={() => {
+              this.handleClick();
+            }}
+            color="red"
+          >
+            CHECK USER
+          </Button>
+*/

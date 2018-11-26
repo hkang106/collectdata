@@ -3,12 +3,44 @@ import { handleActions, createAction } from "redux-actions";
 
 export const CHECK_USER = "CHECK_USER";
 export const ADD_USER = "ADD_USER";
+export const CLICK_SIGNUP = "CLICK_SIGNUP";
 
 export const checkUser = createAction(CHECK_USER);
 export const addUser = createAction(ADD_USER);
+export const clickSignup = createAction(CLICK_SIGNUP);
 
 // API actions
-
+function signupUser(username, email, password) {
+  return (dispatch, getState) => {
+    fetch("https://dialogue-data-character-backend.themusio.com/api/user/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        username: username,
+        password: password,
+        email: email,
+        language: "EN"
+      })
+    })
+      .then(function(response) {
+        if (response.status === 201) {
+          alert("Successfully signed up");
+          return response.json();
+        } else if (response.status === 400) {
+          alert("Signup failed.");
+        }
+      })
+      .then(json => {
+        if (json) {
+          dispatch(clickSignup({ email, username, password }));
+          console.log("json: ", json);
+        }
+      })
+      .catch(err => console.log("error: ", err));
+  };
+}
 function fetchValidUser(username) {
   return (dispatch, getState) => {
     fetch(`http://13.231.41.249/api/user-validation/`, {
@@ -80,13 +112,22 @@ export default handleActions(
       state.updateIn([index, "text"], val => text);
 
       return state.updateIn([index, "status"], val => status);
+    },
+
+    [CLICK_SIGNUP]: (state, action) => {
+      const {
+        payload: { username, password, email }
+      } = action;
+
+      return { ...state, email: email, username: username, password: password };
     }
   },
   initialState
 );
 
 const actionCreators = {
-  fetchValidUser
+  fetchValidUser,
+  signupUser
 };
 
 export { actionCreators };
