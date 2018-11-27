@@ -5,7 +5,10 @@ import SurveyForm from "components/SurveyForm";
 import Buttons from "components/Buttons";
 import LearnersChat from "components/LearnersChat";
 import ChatButton from "components/ChatButton";
+import ProgressRatio from "components/Progress";
 import { withRouter } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import { Container } from "semantic-ui-react";
 
 class App extends React.Component {
   render() {
@@ -23,11 +26,14 @@ const InitialPage = ({ history, match, location }) => {
   console.log("location: ", location);
   return (
     <div>
-      <Validation />
-      <SurveyForm />
-      <Buttons />
-      <LearnersChat />
-      <ChatButton routeHistory={history} />
+      <ProgressRatio />
+      <Container>
+        <Validation />
+        <SurveyForm />
+        <Buttons />
+        <LearnersChat />
+        <ChatButton routeHistory={history} />
+      </Container>
     </div>
   );
 };

@@ -28,14 +28,14 @@ const styles = theme => ({
 });
 
 function ChatButton(props) {
-  const { classes, routeHistory } = props;
+  const { classes, handleSubmit } = props;
   return (
     <div>
       <Button
         variant="contained"
         color="primary"
         onClick={() => {
-          routeHistory.push("/submit/");
+          handleSubmit();
         }}
         className={classes.button}
       >

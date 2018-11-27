@@ -20,6 +20,7 @@ const initialState = {
   options: [],
   bot_cids: [],
   opt_cids: [],
+  message_ids: [],
   is_chat_initiated: false,
   is_bot_message: false,
   is_option_selected: false
@@ -106,11 +107,14 @@ export default handleActions(
     },
 
     [CLICK_OPTION]: (state, action) => {
-      const { payload } = action;
+      const {
+        payload: { message, selected_id }
+      } = action;
       return {
         ...state,
         is_option_selected: true,
-        messages: [...state.messages, payload]
+        message_ids: [...state.message_ids, selected_id],
+        messages: [...state.messages, message]
       };
     },
 

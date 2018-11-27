@@ -30,7 +30,10 @@ function OutlinedButtons(props) {
                 className={classes.button}
                 onClick={() => {
                   fetchBotMessage(opt_cids[index], message);
-                  clickOption(nextOpt[index]);
+                  clickOption({
+                    message: nextOpt[index],
+                    selected_id: opt_cids[index]
+                  });
                 }}
               >
                 {item}
