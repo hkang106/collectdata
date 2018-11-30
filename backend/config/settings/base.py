@@ -250,3 +250,13 @@ SOCIALACCOUNT_ADAPTER = 'backend.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+REST_FRAMEWORK = {
+	 'DEFAULT_PERMISSION_CLASSES': ( # it makes every api is private.
+		 #'rest_framework.permissions.IsAuthenticated',
+		 ),
+	 'DEFAULT_AUTHENTICATION_CLASSES': ( 
+		 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',# it works with JWT
+		 #'rest_framework.authentication.SessionAuthentication', # Still works with session authentication(cookies and so on)
+		 #'rest_framework.authentication.BasicAuthentication', 
+	 ),
+}
