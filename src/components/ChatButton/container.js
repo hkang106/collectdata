@@ -99,7 +99,7 @@ const postStateToDB = (survey, user, chat) => {
   console.log("d_list: ", d_list);
   console.log("u_list: ", u_list);
 
-  fetch("/si/dataset/", {
+  fetch("localhost:8000/data/set/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"

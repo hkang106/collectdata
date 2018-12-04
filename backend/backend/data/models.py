@@ -14,12 +14,12 @@ class TimeStampedModel(models.Model):
 
 @python_2_unicode_compatible
 class Data(TimeStampedModel):
-    username = models.CharField(max_length=255, null=True, blank=True)
-    password = models.CharField(max_length=255, null=True, blank=True)
-    email = models.EmailField(max_length=254, null=True, blank=True) 
-    messages = ArrayField(models.CharField(max_length=100), null=True, blank=True)
-    message_ids = ArrayField(models.CharField(max_length=100), null=True, blank=True)
-    diagnosis_answers = ArrayField(models.CharField(max_length=100), null=True, blank=True)
-    unittest_answers = ArrayField(models.CharField(max_length=100), null=True, blank=True)
+    username = models.CharField(max_length=255, default="anoynmous" )
+    password = models.CharField(max_length=255, default="")
+    email = models.EmailField(max_length=254 , default="test@aka.com") 
+    messages = ArrayField(models.CharField(max_length=100),  default=list)
+    message_ids = ArrayField(models.CharField(max_length=100),  default=list)
+    diagnosis_answers = ArrayField(models.CharField(max_length=100),  default=list)
+    unittest_answers = ArrayField(models.CharField(max_length=100),  default=list)
 
 

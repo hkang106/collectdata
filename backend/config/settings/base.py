@@ -1,7 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
-
+import os, os.path
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 3  # (backend/config/settings/base.py - 3 = backend/)
@@ -39,8 +39,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': env.db('DATABASE_URL', default='postgres:///sidb'),
+	'default': {
+		'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+		'NAME': 'sqlite3.db', # Or path to database file if using sqlite3.
+		'USER': '', # Not used with sqlite3.
+		'PASSWORD': '', # Not used with sqlite3.
+		'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+		'PORT': '', # Set to empty string for default. Not used with sqlite3.
+	}
 }
+#DATABASES = {
+    
+#    'default': env.db('DATABASE_URL', default='postgres:///sidb'),
+#}
 DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # URLS
@@ -68,6 +79,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'corsheaders',
 ]
 LOCAL_APPS = [
     'backend.users.apps.UsersAppConfig',
@@ -131,6 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -146,7 +159,8 @@ STATIC_ROOT = str(ROOT_DIR('staticfiles'))
 STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
 STATICFILES_DIRS = [
-    str(APPS_DIR.path('static')),
+    str(APPS_DIR.path('static')), # django static
+    str(ROOT_DIR.path('..','build','static') ), # React static
 ]
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -260,3 +274,6 @@ REST_FRAMEWORK = {
 		 #'rest_framework.authentication.BasicAuthentication', 
 	 ),
 }
+
+
+CORS_ORIGIN_ALLOW_ALL = True
