@@ -1,1 +1,3 @@
--r backend/requirements/production.txt
+#django==2.0.9  # pyup: < 2.1  # https://www.djangoproject.com/
+
+-r ./requirements/production.txt
